@@ -1,0 +1,26 @@
+<div class="wrapper fadeInDown">
+    <div class="col-sm-4" style="margin: auto;">
+
+        <div class="fadeIn first">
+            <h2>Welcome to ATM Searcher!!</h2>
+        </div>
+        
+        <div >
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input formControlName="username" type="text" class="form-control fadeIn second" id="username"  placeholder="Enter username"/>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input formControlName="password" type="text" class="form-control fadeIn third" id="password" placeholder="Password" />
+                </div>
+
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary"> Login </button>
+            </form>
+            
+            <div *ngIf="error" class="alert alert-danger mt-4 mb-0">{{error}}</div>
+        </div>
+    </div>
+</div>
