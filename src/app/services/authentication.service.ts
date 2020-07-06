@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthenticationService {
 
   private currentTokenSubject: BehaviorSubject<String>;
-    public currentToken: Observable<String>;
+  private currentToken: Observable<String>;
 
   constructor(private http: HttpClient) {
     this.currentTokenSubject = new BehaviorSubject<String>(localStorage.getItem('currentToken'));
@@ -23,10 +23,11 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     // store user and jwt token in local storage to keep user logged in between page refreshes
-    return this.http.post("http://localhost:8080/atscom/login", {'userName': username, 'password': password}, {responseType: 'text' as 'json'}).pipe(map(data => {
-      let token = "Bearer " + data
+    return this.http.post("atscom/login", {'userName': username, 'password': password}, {responseType: 'text' as 'json'}).pipe(map(data => {
+      let token = data.toString()
       localStorage.setItem("currentToken", token)
       this.currentTokenSubject.next(token);
+      return token
     }))
   }
 

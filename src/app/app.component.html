@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-  <router-outlet></router-outlet>
+<div *ngIf="session" class="container">
+  <app-atm-searcher></app-atm-searcher>
+  <app-atm-list></app-atm-list>
+</div>
+
+<div *ngIf="!session" class="container">
+  <app-login></app-login>
 </div>

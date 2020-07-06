@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { first } from 'rxjs/operators';
@@ -14,11 +14,9 @@ export class LoginComponent implements OnInit {
   error: string
   loginForm: FormGroup;
   returnUrl: string;
-  submitted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authenticationService:AuthenticationService) { 
       
@@ -34,9 +32,6 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onSubmit() {
@@ -48,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password).pipe(first())
     .subscribe(
         token => {
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate(['/']);
             this.error = null
         },
         error => {

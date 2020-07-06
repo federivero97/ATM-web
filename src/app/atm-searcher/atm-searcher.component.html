@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <h2> Search a ATM </h2>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group col-sm-4">
+        <label for="text"> Text </label>
+        <input formControlName="text" type="text" class="form-control" id="inputText" aria-describedby="textlHelp" placeholder="Enter text">
+        </div>
+        Search by:
+        <div class="row">
+            <div *ngFor="let filter of filtersData; let i = index" class="mx-2 my-2">
+                <label>
+                    <input type="checkbox" [value]="filter.value" (change)="onCheckboxChange($event)" />
+                    {{filter.name}}
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary"> Submit </button>
+    </form>
+</div>
