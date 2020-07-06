@@ -1,18 +1,21 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-md-4 mx-auto my-4" *ngFor="let atm of this.atmList">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <ul>
-                        <li>City: {{atm.address.city}}</li>
-                        <li>Address: {{atm.address.street}} {{atm.address.housenumber}}</li>
-                        <li>Postal code: {{atm.address.postalcode}}</li>
-                        <li>Geo Location: 
-                            <p>({{atm.address.geoLocation.lat}}, {{atm.address.geoLocation.lng}})</p>
-                        </li>
-                        <li>Distance: {{atm.distance}}</li>
-                        <li>Type: {{atm.type}}</li>
-                    </ul>
+        <div class="col-md-4 mb-4" *ngFor="let atm of this.atmList">
+            <div class="card card-cascade narrower">
+                <div class="card-body card-body-cascade text-center">
+                    
+                    <h4 class="card-title">{{atm.address.city}}, {{atm.address.street}} {{atm.address.housenumber}}</h4>
+                    <p>Postal Code: {{atm.address.postalcode}}</p>
+                    <div class="card-text">
+                        Geo Location: 
+                        <p>({{atm.address.geoLocation.lat}}, {{atm.address.geoLocation.lng}})</p>
+                    </div>
+                    <p>Distance: {{atm.distance}}</p>
+                    <p>Type: {{atm.type}}</p>
+
+                    <a href="https://www.google.com/maps/search/{{atm.address.geoLocation.lat}},{{atm.address.geoLocation.lng}}/@{{atm.address.geoLocation.lat}},{{atm.address.geoLocation.lng}},17z" target="_blank"> 
+                        See in Gmaps 
+                    </a>
                 </div>
             </div>
         </div>

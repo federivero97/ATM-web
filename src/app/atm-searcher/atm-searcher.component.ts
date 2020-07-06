@@ -52,7 +52,8 @@ export class AtmSearcherComponent implements OnInit {
   }
 
   onSubmit() {
-    this.atmService.getAtmList(this.searchForm.value.text,this.searchForm.value.filtersArray)
+    if (this.searchForm.value.filtersArray.length){
+      this.atmService.getAtmList(this.searchForm.value.text,this.searchForm.value.filtersArray)
+    }
   }
-
 } 
